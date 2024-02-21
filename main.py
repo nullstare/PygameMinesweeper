@@ -240,7 +240,7 @@ class Gui:
 		if inputManager.mouseButtonPressed[0]:
 			if self.faceDst.isPointIn( inputManager.mousePos ):
 				game.start( self.mineCount, self.fieldSize )
-			elif self.mineDst.isPointIn( inputManager.mousePos ) and self.mineCount < 99:
+			elif self.mineDst.isPointIn( inputManager.mousePos ) and self.mineCount < self.fieldSize * self.fieldSize:
 				self.mineCount += 1
 			elif self.sizeDst.isPointIn( inputManager.mousePos ) and self.fieldSize < 40:
 				self.fieldSize += 1
