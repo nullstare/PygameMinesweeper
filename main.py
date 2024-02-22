@@ -106,6 +106,9 @@ class Tile:
 				( pos.x, pos.y ),
 				[ 8 * game.TILE_SIZE, 0, game.TILE_SIZE, game.TILE_SIZE ]
 			)
+	def clear( self ):
+		self.hasFlag = False
+		self.isBlock = False
 
 class Field:
 	def __init__( self ):
@@ -186,7 +189,7 @@ class Field:
 							frontier.append( checkPos )
 							visited.add( self.tiles[ checkPos.x ][ checkPos.y ] )
 
-			self.tiles[ curPos.x ][ curPos.y ].isBlock = False
+			self.tiles[ curPos.x ][ curPos.y ].clear()
 
 	def update( self ):
 		if inputManager.mouseButtonPressed[0]:
@@ -199,8 +202,7 @@ class Field:
 					tile.exploded = True
 					game.state = game.STATE_FAIL
 				elif tile.isBlock:
-					tile.hasFlag = False
-					tile.isBlock = False
+					tile.clear()
 					if tile.minesNextTo == 0:
 						self.expandClear( tilePos )
 
